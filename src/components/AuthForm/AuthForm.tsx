@@ -28,15 +28,12 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
   return (
     <div className="auth-container">
-      <Logo/>
-
-      {(isRegister || isRecover) && (
-        <button className="back-button" onClick={goTo('/login')} type="button">
-          ← Voltar para login
-        </button>
-      )}
+      <Logo />
 
       <form className="auth-form" key={type} onSubmit={handleSubmit}>
+        {isRecover && (
+          <div className="help-text">Informe seu e-mail que enviaremos uma nova senha!</div>
+        )}
         <Input
           type="email"
           name="email"
@@ -74,6 +71,12 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           {type === 'recover' && 'Enviar'}
         </Button>
       </form>
+
+      {(isRegister || isRecover) && (
+        <button className="back-button" onClick={goTo('/login')} type="button">
+          ← Voltar para login
+        </button>
+      )}
 
       {type === 'login' && (
         <div className="links">

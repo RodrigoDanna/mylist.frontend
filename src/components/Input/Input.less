@@ -5,8 +5,14 @@
   border-radius: var(--input-radius);
   background-color: var(--input-bg);
   font-size: 1rem;
-  color: var(--text);
+  color: var(--primary);
   transition: border 0.2s ease;
+  text-align: center;
+
+  &::placeholder {
+    color: var(--primary);
+    opacity: 1; // Ensures full color visibility across browsers
+  }
 
   &:focus {
     outline: none;
