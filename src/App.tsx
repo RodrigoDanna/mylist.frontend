@@ -1,13 +1,26 @@
-import React from 'react'
-import { Login } from './pages/Login'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AuthForm from './components/AuthForm/AuthForm'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      <Login />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<AuthForm type="login" onSubmit={handleLogin} />} />
+        <Route path="/register" element={<AuthForm type="register" onSubmit={handleRegister} />} />
+        <Route path="/recover" element={<AuthForm type="recover" onSubmit={handleRecover} />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App
+function handleLogin(data: any) {
+  // call login API
+}
+
+function handleRegister(data: any) {
+  // call register API
+}
+
+function handleRecover(data: any) {
+  // call recover API
+}

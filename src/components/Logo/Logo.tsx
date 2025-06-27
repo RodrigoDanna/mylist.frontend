@@ -1,3 +1,5 @@
+import logoUrl from '../../assets/logo.svg'
+
 export function Logo() {
-  return <div className="logo">MyList</div>
+  return <img src={logoUrl} alt="Logo MyList" />
 }

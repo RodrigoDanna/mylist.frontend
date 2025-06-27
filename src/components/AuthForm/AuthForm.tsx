@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import './Auth.less'
+import { useNavigate, Link } from 'react-router-dom'
+import './AuthForm.less'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
+import { Logo } from '../Logo/Logo'
 
 interface AuthFormProps {
   type: 'login' | 'register' | 'recover'
@@ -15,27 +17,39 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
   const isRegister = type === 'register'
   const isRecover = type === 'recover'
+  const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit({ email, password, confirmPassword })
   }
 
+  const goTo = (path: string) => () => navigate(path)
+
   return (
     <div className="auth-container">
-      <div className="logo">MyList</div>
-      <form className="auth-form" onSubmit={handleSubmit}>
+      <Logo/>
+
+      {(isRegister || isRecover) && (
+        <button className="back-button" onClick={goTo('/login')} type="button">
+          ← Voltar para login
+        </button>
+      )}
+
+      <form className="auth-form" key={type} onSubmit={handleSubmit}>
         <Input
           type="email"
+          name="email"
           placeholder="E-mail"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          autoComplete="username"
+          autoComplete={!isRecover ? 'username' : undefined}
         />
         {!isRecover && (
           <Input
             type="password"
+            name="password"
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -46,6 +60,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         {isRegister && (
           <Input
             type="password"
+            name="confirmPassword"
             placeholder="Repetir Senha"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -59,14 +74,11 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           {type === 'recover' && 'Enviar'}
         </Button>
       </form>
+
       {type === 'login' && (
         <div className="links">
-          <a href="#">
-            Esqueceu sua senha? <span>Clique aqui</span>
-          </a>
-          <a href="#">
-            Ainda não tem conta? <span>Clique aqui</span>
-          </a>
+          <Link to="/recover">Esqueceu sua senha?</Link>
+          <Link to="/register">Ainda não tem conta?</Link>
         </div>
       )}
     </div>
