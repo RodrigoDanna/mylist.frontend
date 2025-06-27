@@ -1,5 +1,5 @@
-import './Input.less';
+import './Input.less'
 
 export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className="custom-input" {...props} />;
+  return <input className="custom-input" {...props} />
 }

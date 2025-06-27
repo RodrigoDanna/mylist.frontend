@@ -22,7 +22,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,less,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
-    "craco-less": "^3.0.1"
+    "craco-less": "^3.0.1",
+    "prettier": "^3.6.2"
   }
 }
