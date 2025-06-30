@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import './AuthForm.less'
 import { Input } from '../Input/Input'
 import { Button } from '../Button/Button'
-import { ReactComponent as Logo } from '../../assets/logo.svg'
+import Logo from '../../assets/logo.png'
 
 interface AuthFormProps {
   type: 'login' | 'register' | 'recover'
@@ -29,7 +29,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
   return (
     <div className="auth-container">
-      <Logo className="logo" />
+      <img src={Logo} alt="MyList" className="logo"/>
 
       <div className="form-wrapper">
         <form className="auth-form" key={type} onSubmit={handleSubmit}>

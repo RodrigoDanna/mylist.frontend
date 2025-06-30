@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthForm from './components/AuthForm/AuthForm'
+import TaskList from './pages/TaskList/TaskList'
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
         <Route path="/login" element={<AuthForm type="login" onSubmit={handleLogin} />} />
         <Route path="/register" element={<AuthForm type="register" onSubmit={handleRegister} />} />
         <Route path="/recover" element={<AuthForm type="recover" onSubmit={handleRecover} />} />
+        <Route path="/list" element={<TaskList />} />
       </Routes>
     </BrowserRouter>
   )
