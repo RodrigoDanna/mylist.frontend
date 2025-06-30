@@ -2,16 +2,32 @@ import Logo from '../../assets/logo.png'
 import { ReactComponent as SearchIcon } from '../../assets/search.svg'
 import { ReactComponent as FilterIcon } from '../../assets/filter.svg'
 import { ReactComponent as MenuIcon } from '../../assets/menu.svg'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.less';
 import { Link } from 'react-router-dom';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  className?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ className }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const toggleMenu = () => setMenuOpen((open) => !open);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // check on mount
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const headerClass = [className, scrolled ? 'scrolled' : ''].filter(Boolean).join(' ');
+
   return (
-    <header id="header">
+    <header id="header" className={headerClass}>
       <img src={Logo} alt="MyList" className="logo"/>
 
       <div className="search-bar">

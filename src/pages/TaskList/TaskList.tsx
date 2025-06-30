@@ -48,17 +48,36 @@ export default function TaskList() {
     setTasks(mockTasks)
   }, [])
 
+  const priorities: Task['priority'][] = ['baixa', 'media', 'alta', 'nenhuma']
+
+  // Function to add a mock task
+  const handleAddTask = () => {
+    const randomPriority = priorities[Math.floor(Math.random() * priorities.length)]
+
+    const newTask: Task = {
+      id: (tasks.length + 1).toString(),
+      title: `Nova tarefa ${tasks.length + 1}`,
+      deadline: '03/07/2025',
+      priority: randomPriority,
+      status: 'pendente',
+    }
+    setTasks([...tasks, newTask])
+  }
+
   return (
-    <div className="task-list-container">
+    <>
       <Header />
+      
+      <div className="task-list-container">
 
-      <main className="task-list-grid">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} {...task} />
-        ))}
-      </main>
+        <main className="task-list-grid">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} {...task} />
+          ))}
+        </main>
 
-      <PlusButton />
-    </div>
+        <PlusButton onClick={handleAddTask} />
+      </div>
+    </>
   )
 }

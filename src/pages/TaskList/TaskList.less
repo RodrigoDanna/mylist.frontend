@@ -2,21 +2,28 @@
 
 .task-list-container {
   min-height: 100vh;
-  padding: 1rem;
+  padding: 5rem 0.5rem 1rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: @grid-break) {
+    padding: 5rem 1rem 1rem 1rem;
+  }
 }
 
 .task-list-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(1fr);
   gap: 1rem;
   margin-top: 2rem;
   width: 100%;
   max-width: @desktop-width;
+  padding-bottom: 3.5rem;
 
-  @media (min-width: @desktop-width) {
+  @media (min-width: @grid-break) {
     gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    padding-bottom: 0;
   }
 }

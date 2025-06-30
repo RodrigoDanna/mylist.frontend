@@ -1,11 +1,13 @@
+@import '../../variables.less';
+
 .plus-button {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
   background-color: var(--primary);
   border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +15,16 @@
   font-size: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  border: 6px solid white;
+  border: 4px solid white;
   transition: background-color var(--transition);
+
+  @media (min-width: @grid-break) {
+    border: 6px solid white;
+    width: 4rem;
+    height: 4rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
 
   &:hover {
     background-color: var(--hover);
