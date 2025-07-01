@@ -78,12 +78,23 @@
 
     select {
       width: 100%;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 2.2rem 0.5rem 1rem;
       border-radius: var(--input-radius);
       border: 1px solid transparent;
       background-color: var(--input-bg);
       box-shadow: var(--box-shadow);
-
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      /* Custom blue V arrow */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><polyline points="8,12 16,20 24,12" fill="none" stroke="%2334497B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.5em;
+      /* Hide arrow in IE10+ */
+      &::-ms-expand {
+        display: none;
+      }
       &:focus {
         border: 1px solid transparent;
         outline: none;
