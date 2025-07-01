@@ -18,4 +18,18 @@
     background-color: #999;
     cursor: not-allowed;
   }
+
+  &.apply,
+  &.cancel {
+    border-radius: 10px;
+  }
+
+  &.cancel {
+    background-color: var(--cancel);
+    color: white;
+
+    &:hover {
+      background-color: var(--cancel-hover);
+    }
+  }
 }

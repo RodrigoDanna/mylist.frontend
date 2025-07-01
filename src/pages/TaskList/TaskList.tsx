@@ -3,6 +3,7 @@ import './TaskList.less'
 import PlusButton from '../../components/PlusButton/PlusButton'
 import Header from '../../components/Header/Header'
 import TaskCard from '../../components/TaskCard/TaskCard'
+import TaskFilterPanel from '../../components/TaskFilterPanel/TaskFilterPanel'
 
 export interface Task {
   id: string

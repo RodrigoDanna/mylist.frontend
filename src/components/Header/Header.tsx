@@ -5,12 +5,14 @@ import { ReactComponent as MenuIcon } from '../../assets/menu.svg'
 import React, { useState, useEffect } from 'react';
 import './Header.less';
 import { Link } from 'react-router-dom';
+import TaskFilterPanel from '../TaskFilterPanel/TaskFilterPanel';
 
 interface HeaderProps {
   className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ className }) => {
+  const [filterOpen, setFilterOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const toggleMenu = () => setMenuOpen((open) => !open);
@@ -36,7 +38,8 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       </div>
 
       <div className="actions">
-        <FilterIcon className="icon" title="Filtrar tarefas"/>
+        <FilterIcon onClick={() => setFilterOpen(true)} className="icon" title="Filtrar tarefas"/>
+        <TaskFilterPanel isOpen={filterOpen} onClose={() => setFilterOpen(false)} />
         
         <div className="menu-wrapper">
           <MenuIcon className="icon" onClick={toggleMenu} title="Menu"/>
