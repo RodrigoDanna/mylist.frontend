@@ -30,13 +30,11 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
   return (
     <div className="auth-container">
-      <img src={Logo} alt="MyList" className="logo"/>
+      <img src={Logo} alt="MyList" className="logo" />
 
       <div className="form-wrapper">
         <form className="auth-form" key={type} onSubmit={handleSubmit}>
-          {isLogin && (
-            <div className="help-text">Para entrar, informe seu e-mail e senha!</div>
-          )}
+          {isLogin && <div className="help-text">Para entrar, informe seu e-mail e senha!</div>}
           {isRecover && (
             <div className="help-text">Informe seu e-mail e enviaremos uma nova senha!</div>
           )}

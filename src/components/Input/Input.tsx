@@ -21,7 +21,9 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
   const isPassword = type === 'password'
   const isDate = type === 'date'
   const inputType = isPassword && showPassword ? 'text' : type
-  const inputClass = label ? `custom-input align-left ${className}`.trim() : `custom-input ${className}`.trim()
+  const inputClass = label
+    ? `custom-input align-left ${className}`.trim()
+    : `custom-input ${className}`.trim()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isDate) {
@@ -31,10 +33,7 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
   }
 
   return (
-    <div
-      className="custom-input-wrapper"
-      style={isDate ? { cursor: 'pointer' } : undefined}
-    >
+    <div className="custom-input-wrapper" style={isDate ? { cursor: 'pointer' } : undefined}>
       {label && <label className="custom-input-label">{label}</label>}
       <input
         ref={inputRef}
@@ -44,7 +43,7 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
         value={isDate ? dateValue : props.value}
         onChange={handleChange}
         readOnly={isDate && !!props.readOnly}
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation()
           if (isDate && inputRef.current) {
             inputRef.current.focus()
@@ -52,14 +51,12 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
           }
         }}
       />
-      {isDate && (
-        <span className="date-overlay">{formatDate(dateValue)}</span>
-      )}
+      {isDate && <span className="date-overlay">{formatDate(dateValue)}</span>}
       {isPassword && (
         <button
           type="button"
           className="toggle-password-visibility"
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation()
             setShowPassword((v) => !v)
           }}

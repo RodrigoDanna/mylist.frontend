@@ -15,7 +15,7 @@ export interface Task {
 
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Mocked tasks data
@@ -41,8 +41,8 @@ export default function TaskList() {
         priority: 'baixa',
         status: 'concluida'
       }
-    ];
-    setTasks(mockedTasks);
+    ]
+    setTasks(mockedTasks)
   }, [])
 
   return (
@@ -50,11 +50,16 @@ export default function TaskList() {
       <Header />
 
       <div className="task-list-container">
-
         <main className="task-list-grid">
-          {!tasks.length ? <><span className="no-task">Começe criando suas tarefas clicando no botão de "+" abaixo!</span></> : tasks.map((task) => (
-            <TaskCard key={task.id} {...task} />
-          ))}
+          {!tasks.length ? (
+            <>
+              <span className="no-task">
+                Começe criando suas tarefas clicando no botão de "+" abaixo!
+              </span>
+            </>
+          ) : (
+            tasks.map((task) => <TaskCard key={task.id} {...task} />)
+          )}
         </main>
 
         <PlusButton onClick={() => navigate('/add-task')} />

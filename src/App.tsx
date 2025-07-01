@@ -22,13 +22,13 @@ export default function App() {
 }
 
 function handleLogin(data: any) {
-  console.log(data);
+  console.log(data)
 }
 
 function handleRegister(data: any) {
-  console.log(data);
+  console.log(data)
 }
 
 function handleRecover(data: any) {
-  console.log(data);
+  console.log(data)
 }
