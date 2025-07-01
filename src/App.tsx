@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthForm from './components/AuthForm/AuthForm'
 import TaskList from './pages/TaskList/TaskList'
+import ChangePasswordPage from './pages/ChangePassword/ChangePassword'
 
 export default function App() {
   return (
@@ -10,19 +11,20 @@ export default function App() {
         <Route path="/register" element={<AuthForm type="register" onSubmit={handleRegister} />} />
         <Route path="/recover" element={<AuthForm type="recover" onSubmit={handleRecover} />} />
         <Route path="/list" element={<TaskList />} />
+        <Route path="/change-password" element={<ChangePasswordPage />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
 function handleLogin(data: any) {
-  // call login API
+  console.log(data);
 }
 
 function handleRegister(data: any) {
-  // call register API
+  console.log(data);
 }
 
 function handleRecover(data: any) {
-  // call recover API
+  console.log(data);
 }

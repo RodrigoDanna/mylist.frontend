@@ -22,10 +22,11 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit({ email, password, confirmPassword })
+    const data: any = { email }
+    if (!isRecover) data.password = password
+    if (isRegister) data.confirmPassword = confirmPassword
+    onSubmit(data)
   }
-
-  const goTo = (path: string) => () => navigate(path)
 
   return (
     <div className="auth-container">
@@ -81,7 +82,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         </form>
 
         {(isRegister || isRecover) && (
-          <button className="back-button" onClick={goTo('/login')} type="button">
+          <button className="back-button" onClick={() => navigate('/login')} type="button">
             ← Voltar para login
           </button>
         )}
