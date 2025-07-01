@@ -3,6 +3,7 @@ import AuthForm from './components/AuthForm/AuthForm'
 import TaskList from './pages/TaskList/TaskList'
 import ChangePasswordPage from './pages/ChangePassword/ChangePassword'
 import EditTask from './pages/EditTask/EditTask'
+import AddTask from './pages/AddTask/AddTask'
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
         <Route path="/list" element={<TaskList />} />
         <Route path="/change-password" element={<ChangePasswordPage />} />
         <Route path="/edit-task" element={<EditTask />} />
-        {/* <Route path="/new-task" element={<NewTask />} /> */}
+        <Route path="/add-task" element={<AddTask />} />
       </Routes>
     </BrowserRouter>
   )

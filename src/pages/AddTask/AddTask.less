@@ -1,0 +1,39 @@
+@import '../../variables.less';
+
+.add-task-form {
+  max-width: @desktop-width;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 2rem;
+
+  @media (min-width: @grid-break) {
+    padding: 2rem;
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .input-label {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+}
