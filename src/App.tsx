@@ -4,6 +4,7 @@ import TaskList from './pages/TaskList/TaskList'
 import ChangePasswordPage from './pages/ChangePassword/ChangePassword'
 import EditTask from './pages/EditTask/EditTask'
 import AddTask from './pages/AddTask/AddTask'
+import PrivateRoute from './components/PrivateRoute'
 
 export default function App() {
   return (
@@ -12,10 +13,26 @@ export default function App() {
         <Route path="/login" element={<AuthForm type="login" onSubmit={handleLogin} />} />
         <Route path="/register" element={<AuthForm type="register" onSubmit={handleRegister} />} />
         <Route path="/recover" element={<AuthForm type="recover" onSubmit={handleRecover} />} />
-        <Route path="/list" element={<TaskList />} />
-        <Route path="/change-password" element={<ChangePasswordPage />} />
-        <Route path="/edit-task/:id" element={<EditTask />} />
-        <Route path="/add-task" element={<AddTask />} />
+        <Route path="/list" element={
+          <PrivateRoute>
+            <TaskList />
+          </PrivateRoute>
+        } />
+        <Route path="/change-password" element={
+          <PrivateRoute>
+            <ChangePasswordPage />
+          </PrivateRoute>
+        } />
+        <Route path="/edit-task/:id" element={
+          <PrivateRoute>
+            <EditTask />
+          </PrivateRoute>
+        } />
+        <Route path="/add-task" element={
+          <PrivateRoute>
+            <AddTask />
+          </PrivateRoute>
+        } />
       </Routes>
     </BrowserRouter>
   )
