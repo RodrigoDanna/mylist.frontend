@@ -16,7 +16,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({ isOpen, onClose }) =>
       </header>
 
       <section className="sort-section">
-        <div className="filter-section-title">Ordenar por</div>
+        <div className="section-title">Ordenar por</div>
         <select>
           <option>Prioridade ↓</option>
           <option>Prioridade ↑</option>
@@ -26,7 +26,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({ isOpen, onClose }) =>
       </section>
 
       <section className="filter-section">
-        <div className="filter-section-title">Filtrar por</div>
+        <div className="section-title">Filtrar por</div>
         <div className="filter-options">
           <label><input type="checkbox" /> <span>Prioridade Alta</span></label>
           <label><input type="checkbox" /> <span>Prioridade Média</span></label>

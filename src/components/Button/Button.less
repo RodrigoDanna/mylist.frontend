@@ -20,7 +20,8 @@
   }
 
   &.apply,
-  &.cancel {
+  &.cancel,
+  &.delete {
     border-radius: 10px;
   }
 
@@ -30,6 +31,15 @@
 
     &:hover {
       background-color: var(--cancel-hover);
+    }
+  }
+
+  &.delete {
+    background-color: var(--delete);
+    color: white;
+
+    &:hover {
+      background-color: var(--delete-hover);
     }
   }
 }
