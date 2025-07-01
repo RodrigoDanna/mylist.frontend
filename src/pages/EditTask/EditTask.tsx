@@ -3,7 +3,6 @@ import Header from '../../components/Header/Header';
 import { Input } from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
 import './EditTask.less';
-import { useNavigate } from 'react-router-dom';
 
 const priorities = [
   { value: 'alta', label: 'Alta' },
@@ -17,7 +16,6 @@ const EditTaskPage: React.FC = () => {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState('alta');
   const [dueDate, setDueDate] = useState('');
-  const navigate = useNavigate();
 
   return (
     <>
@@ -57,6 +55,9 @@ const EditTaskPage: React.FC = () => {
             type="date"
             label="Prazo"
             value={dueDate}
+            className="custom-date"
+            data-date="" 
+            data-date-format="DD MMMM YYYY"
             onChange={e => setDueDate(e.target.value)}
           />
         </div>
