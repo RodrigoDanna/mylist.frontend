@@ -14,7 +14,7 @@ interface HeaderProps {
   type?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ className, type="list" }) => {
+const Header: React.FC<HeaderProps> = ({ className = "header", type="list" }) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './TaskCard.less';
 import { Task } from '../../pages/TaskList/TaskList';
 import { useNavigate } from 'react-router-dom';
+import { ReactComponent as EditIcon } from '../../assets/edit.svg'
 
 const TaskCard: React.FC<Task> = ({ id, title, deadline, priority = 'nenhuma', status = 'pendente' }) => {
   const navigate = useNavigate();
@@ -34,10 +35,7 @@ const TaskCard: React.FC<Task> = ({ id, title, deadline, priority = 'nenhuma', s
           onClick={handleEditClick}
           tabIndex={0}
         >
-          {/* Simple pencil SVG icon */}
-          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-            <path d="M14.7 2.29a1 1 0 0 1 1.42 0l1.59 1.59a1 1 0 0 1 0 1.42l-9.29 9.3-3.3.71a1 1 0 0 1-1.18-1.18l.71-3.3 9.3-9.29zM3 17h14a1 1 0 1 1 0 2H3a1 1 0 1 1 0-2z" />
-          </svg>
+          <EditIcon />
         </button>
         {deadline && <span className="date">{deadline}</span>}
         {priority && <span className={`priority ${priority.toLowerCase()}`}>{priority}</span>}
