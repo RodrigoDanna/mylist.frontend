@@ -56,8 +56,6 @@ const EditTaskPage: React.FC = () => {
             label="Prazo"
             value={dueDate}
             className="custom-date"
-            data-date="" 
-            data-date-format="DD MMMM YYYY"
             onChange={e => setDueDate(e.target.value)}
           />
         </div>
