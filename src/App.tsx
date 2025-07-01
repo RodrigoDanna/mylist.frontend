@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/recover" element={<AuthForm type="recover" onSubmit={handleRecover} />} />
         <Route path="/list" element={<TaskList />} />
         <Route path="/change-password" element={<ChangePasswordPage />} />
-        <Route path="/edit-task" element={<EditTask />} />
+        <Route path="/edit-task/:id" element={<EditTask />} />
         <Route path="/add-task" element={<AddTask />} />
       </Routes>
     </BrowserRouter>

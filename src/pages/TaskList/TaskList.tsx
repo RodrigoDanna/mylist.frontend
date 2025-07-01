@@ -18,7 +18,31 @@ export default function TaskList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch tasks from API and setTasks
+    // Mocked tasks data
+    const mockedTasks: Task[] = [
+      {
+        id: '1',
+        title: 'Comprar leite',
+        deadline: '2025-07-03',
+        priority: 'alta',
+        status: 'pendente'
+      },
+      {
+        id: '2',
+        title: 'Estudar React',
+        deadline: '2025-07-05',
+        priority: 'media',
+        status: 'pendente'
+      },
+      {
+        id: '3',
+        title: 'Enviar relatório',
+        deadline: '2025-07-02',
+        priority: 'baixa',
+        status: 'concluida'
+      }
+    ];
+    setTasks(mockedTasks);
   }, [])
 
   return (
