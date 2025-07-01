@@ -23,7 +23,18 @@
 
   @media (min-width: @grid-break) {
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 0.5fr));
     padding-bottom: 0;
+  }
+
+  .no-task {
+    font-size: 15px;
+    text-align: center;
+    grid-column: span 2;
+    padding: 10% 0;
+
+    @media (min-width: @grid-break) {
+      font-size: 22px;
+    }
   }
 }

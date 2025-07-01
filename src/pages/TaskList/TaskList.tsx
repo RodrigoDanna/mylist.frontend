@@ -17,35 +17,6 @@ export default function TaskList() {
 
   useEffect(() => {
     // fetch tasks from API and setTasks
-    const mockTasks: Task[] = [
-      {
-        id: '1',
-        title: 'Estudar React',
-        deadline: '01/07/2025',
-        priority: 'alta',
-        status: 'pendente',
-      },
-      {
-        id: '2',
-        title: 'Fazer compras',
-        deadline: '02/07/2025',
-        priority: 'media',
-        status: 'concluida',
-      },
-      {
-        id: '3',
-        title: 'Ler um livro',
-        priority: 'nenhuma',
-        status: 'pendente',
-      },
-      {
-        id: '4',
-        title: 'Lavar o carro',
-        deadline: '02/07/2025',
-        status: 'pendente',
-      },
-    ]
-    setTasks(mockTasks)
   }, [])
 
   const priorities: Task['priority'][] = ['baixa', 'media', 'alta', 'nenhuma']
@@ -67,11 +38,11 @@ export default function TaskList() {
   return (
     <>
       <Header />
-      
+
       <div className="task-list-container">
 
         <main className="task-list-grid">
-          {tasks.map((task) => (
+          {!tasks.length ? <><span className="no-task">Começe criando suas tarefas clicando no botão de "+" abaixo!</span></> : tasks.map((task) => (
             <TaskCard key={task.id} {...task} />
           ))}
         </main>
