@@ -36,10 +36,11 @@ const Header: React.FC<HeaderProps> = ({ className }) => {
       </div>
 
       <div className="actions">
-        <FilterIcon className="icon" />
+        <FilterIcon className="icon" title="Filtrar tarefas"/>
         
         <div className="menu-wrapper">
-          <MenuIcon className="icon" onClick={toggleMenu} />
+          <MenuIcon className="icon" onClick={toggleMenu} title="Menu"/>
+
           {menuOpen && (
             <div className="dropdown">
                 <Link to="/change-password" className="link">Trocar Senha</Link>
