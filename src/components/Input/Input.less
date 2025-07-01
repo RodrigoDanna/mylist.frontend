@@ -101,4 +101,23 @@
       height: 20px;
     }
   }
+
+  .custom-input[type='password']::-ms-reveal,
+  .custom-input[type='password']::-ms-clear {
+    display: none;
+  }
+
+  .custom-input[type='password']::-webkit-credentials-auto-fill-button,
+  .custom-input[type='password']::-webkit-input-password-reveal-button,
+  .custom-input[type='password']::-webkit-input-password-reveal {
+    display: none;
+  }
+
+  .custom-input[type='password']::-o-input-password-reveal-button {
+    display: none;
+  }
+
+  .custom-input[type='password']::-webkit-input-placeholder {
+    color: inherit;
+  }
 }
