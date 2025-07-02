@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AuthForm from '../components/AuthForm/AuthForm';
 
 export function Register() {
-  const navigate = useNavigate();
   const [error, setError] = useState<string | undefined>(undefined);
   const [message, setMessage] = useState<string | undefined>(undefined);
 
@@ -18,8 +16,8 @@ export function Register() {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        const errorResponse = await response.json();
-        setError(errorResponse.message || 'Erro ao registrar usuário');
+        const result = await response.json();
+        setError(result.message);
       } else {
         setMessage('Usuário registrado com sucesso! Faça login para continuar.');
       }

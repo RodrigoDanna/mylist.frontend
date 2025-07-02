@@ -25,8 +25,8 @@ export function Login() {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        const errorResponse = await response.json();
-        setError(errorResponse.message || 'Usuário e/ou senha inválidos');
+        const result = await response.json();
+        setError(result.message);
       } else {
         const token = await response.text();
         localStorage.setItem('token', token);
