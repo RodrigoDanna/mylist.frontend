@@ -4,18 +4,27 @@ import { Task } from '../../pages/TaskList/TaskList'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as EditIcon } from '../../assets/edit.svg'
 
-const TaskCard: React.FC<Task> = ({
+interface TaskCardProps extends Task {
+  onStatusChange?: (id: string, newStatus: 'pendente' | 'concluida') => void
+}
+
+const TaskCard: React.FC<TaskCardProps> = ({
   id,
   title,
   deadline,
   priority = 'nenhuma',
-  status = 'pendente'
+  status = 'pendente',
+  onStatusChange
 }) => {
   const navigate = useNavigate()
   const [isCompleted, setIsCompleted] = useState(status === 'concluida')
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsCompleted(e.target.checked)
+  const handleCheckboxChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked
+    setIsCompleted(checked)
+    if (onStatusChange) {
+      onStatusChange(id, checked ? 'concluida' : 'pendente')
+    }
   }
 
   const handleEditClick = (e: React.MouseEvent) => {

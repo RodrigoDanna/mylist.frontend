@@ -48,6 +48,29 @@ export default function TaskList() {
     fetchTasks()
   }, [navigate])
 
+  async function handleStatusChange(
+    id: string,
+    newStatus: 'pendente' | 'concluida'
+  ) {
+    try {
+      await fetch(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({ status: newStatus }),
+      })
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === id ? { ...task, status: newStatus } : task
+        )
+      )
+    } catch (error) {
+      console.error('Erro ao atualizar status da tarefa:', error)
+    }
+  }
+
   return (
     <>
       <Header />
@@ -61,7 +84,13 @@ export default function TaskList() {
               </span>
             </>
           ) : (
-            tasks.map((task) => <TaskCard key={task.id} {...task} />)
+            tasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                {...task}
+                onStatusChange={handleStatusChange}
+              />
+            ))
           )}
         </main>
 
