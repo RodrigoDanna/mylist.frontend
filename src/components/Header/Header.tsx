@@ -11,9 +11,16 @@ import TaskFilterPanel from '../TaskFilterPanel/TaskFilterPanel'
 interface HeaderProps {
   className?: string
   type?: string
+  searchTerm?: string
+  onSearchTermChange?: (value: string) => void
 }
 
-const Header: React.FC<HeaderProps> = ({ className = 'header', type = 'list' }) => {
+const Header: React.FC<HeaderProps> = ({
+  className = 'header',
+  type = 'list',
+  searchTerm = '',
+  onSearchTermChange,
+}) => {
   const [filterOpen, setFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -42,7 +49,12 @@ const Header: React.FC<HeaderProps> = ({ className = 'header', type = 'list' }) 
       ) : (
         <div className="search-bar">
           <SearchIcon className="icon" />
-          <input type="text" placeholder="Pesquise sua tarefa" />
+          <input
+            type="text"
+            placeholder="Pesquise sua tarefa"
+            value={searchTerm}
+            onChange={e => onSearchTermChange?.(e.target.value)}
+          />
         </div>
       )}
 

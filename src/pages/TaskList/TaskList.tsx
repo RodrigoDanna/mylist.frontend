@@ -16,6 +16,7 @@ export interface Task {
 
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -71,20 +72,29 @@ export default function TaskList() {
     }
   }
 
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <>
-      <Header />
+      <Header
+        searchTerm={searchTerm}
+        onSearchTermChange={setSearchTerm}
+      />
 
       <div className="task-list-container">
         <main className="task-list-grid">
-          {!tasks.length ? (
+          {!filteredTasks.length ? (
             <>
               <span className="no-task">
-                Começe criando suas tarefas clicando no botão de "+" abaixo!
+                {searchTerm
+                  ? 'Nenhuma task encontrada'
+                  : 'Começe criando suas tarefas clicando no botão de "+" abaixo!'}
               </span>
             </>
           ) : (
-            tasks.map((task) => (
+            filteredTasks.map((task) => (
               <TaskCard
                 key={task.id}
                 {...task}
