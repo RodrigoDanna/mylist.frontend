@@ -98,9 +98,11 @@ export default function TaskList() {
         }
       }
       // Deadline
+      if (filterOptions.withDeadline && filterOptions.withoutDeadline) return true
       if (filterOptions.withDeadline && !task.deadline) return false
       if (filterOptions.withoutDeadline && task.deadline) return false
       // Status
+      if (filterOptions.completed && filterOptions.pending) return true
       if (filterOptions.completed && task.status !== 'concluida') return false
       if (filterOptions.pending && task.status !== 'pendente') return false
       return true
@@ -161,7 +163,7 @@ export default function TaskList() {
         <main className="task-list-grid">
           {!sortedTasks.length ? (
             <span className="no-task">
-              {searchTerm
+              {searchTerm || Object.values(filterOptions).some(Boolean)
                 ? 'Nenhuma task encontrada'
                 : 'Começe criando suas tarefas clicando no botão de "+" abaixo!'}
             </span>
