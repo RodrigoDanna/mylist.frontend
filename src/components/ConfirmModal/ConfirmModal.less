@@ -1,0 +1,75 @@
+@import '../../variables.less';
+
+.confirm-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(52, 73, 123, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirm-modal {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem 2.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.confirm-modal-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.confirm-modal-message {
+  font-size: 1rem;
+  color: var(--text);
+  text-align: center;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-btn {
+  border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition);
+  &.cancel {
+    background: var(--cancel);
+    color: white;
+    &:hover {
+      background: var(--cancel-hover);
+      color: #fff;
+    }
+  }
+  &.confirm {
+    background: var(--delete);
+    color: #fff;
+    &:hover {
+      background: var(--delete-hover);
+    }
+  }
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}

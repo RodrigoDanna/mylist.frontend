@@ -4,6 +4,7 @@ import PlusButton from '../../components/PlusButton/PlusButton'
 import Header from '../../components/Header/Header'
 import TaskCard from '../../components/TaskCard/TaskCard'
 import { useNavigate } from 'react-router-dom'
+import { clearToken } from '../../utils/auth' // <-- Add this import
 
 export interface Task {
   id: string
@@ -28,6 +29,12 @@ export default function TaskList() {
             },
           }
         )
+        if (response.status === 401) {
+          clearToken()
+          setTasks([])
+          navigate('/login', { replace: true })
+          return
+        }
         if (!response.ok) {
           throw new Error('Erro ao buscar tarefas')
         }
@@ -39,7 +46,7 @@ export default function TaskList() {
       }
     }
     fetchTasks()
-  }, [])
+  }, [navigate])
 
   return (
     <>

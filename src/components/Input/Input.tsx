@@ -1,5 +1,5 @@
 import './Input.less'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ReactComponent as EyeIcon } from '../../assets/eye.svg'
 import { ReactComponent as EyeOffIcon } from '../../assets/eye-off.svg'
 
@@ -31,6 +31,12 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
     }
     props.onChange?.(e)
   }
+
+  useEffect(() => {
+    if (isDate) {
+      setDateValue(props.value?.toString() || '')
+    }
+  }, [props.value, isDate])
 
   return (
     <div className="custom-input-wrapper" style={isDate ? { cursor: 'pointer' } : undefined}>

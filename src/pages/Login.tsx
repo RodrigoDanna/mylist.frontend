@@ -12,7 +12,7 @@ export function Login() {
     if (isAuthenticated()) {
       navigate('/list', { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   async function handleLogin(data: any) {
     setError(undefined)
