@@ -13,6 +13,10 @@ interface HeaderProps {
   type?: string
   searchTerm?: string
   onSearchTermChange?: (value: string) => void
+  filterOptions?: any
+  setFilterOptions?: any
+  sortOption?: any
+  setSortOption?: any
 }
 
 const Header: React.FC<HeaderProps> = ({
@@ -20,6 +24,10 @@ const Header: React.FC<HeaderProps> = ({
   type = 'list',
   searchTerm = '',
   onSearchTermChange,
+  filterOptions,
+  setFilterOptions,
+  sortOption,
+  setSortOption,
 }) => {
   const [filterOpen, setFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -32,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({
       setScrolled(window.scrollY > 10)
     }
     window.addEventListener('scroll', handleScroll)
-    handleScroll() // check on mount
+    handleScroll()
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -67,7 +75,14 @@ const Header: React.FC<HeaderProps> = ({
           />
         )}
 
-        <TaskFilterPanel isOpen={filterOpen} onClose={() => setFilterOpen(false)} />
+        <TaskFilterPanel
+          isOpen={filterOpen}
+          onClose={() => setFilterOpen(false)}
+          filterOptions={filterOptions}
+          setFilterOptions={setFilterOptions}
+          sortOption={sortOption}
+          setSortOption={setSortOption}
+        />
 
         <div className="menu-wrapper">
           <MenuIcon className="icon" onClick={toggleMenu} title="Menu" />
