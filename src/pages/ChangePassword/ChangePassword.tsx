@@ -31,19 +31,19 @@ const ChangePasswordPage: React.FC = () => {
           },
           body: JSON.stringify({
             currentPassword,
-            password, // use 'password' not 'newPassword'
+            password,
             repeatPassword,
           }),
         }
       )
       if (!response.ok) {
         const result = await response.json()
-        setError(result.message || 'Erro ao alterar senha.')
+        setError(result.message || 'Erro ao alterar senha')
       } else {
         setMessage('Senha alterada com sucesso!')
       }
     } catch (err) {
-      setError('Erro de conexão.')
+      setError('Erro ao alterar a senha')
     } finally {
       setLoading(false)
     }
