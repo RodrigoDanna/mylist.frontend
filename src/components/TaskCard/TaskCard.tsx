@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './TaskCard.less'
-import { Task } from '../../pages/TaskList/TaskList'
+import { Task } from '../../types/TaskTypes'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as EditIcon } from '../../assets/edit.svg'
 

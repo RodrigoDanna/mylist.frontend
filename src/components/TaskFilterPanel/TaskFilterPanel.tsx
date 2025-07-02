@@ -1,26 +1,7 @@
 import React from 'react'
 import './TaskFilterPanel.less'
 import { ReactComponent as ReturnIcon } from '../../assets/return.svg'
-
-type SortOption =
-  | 'priority-desc'
-  | 'priority-asc'
-  | 'deadline-desc'
-  | 'deadline-asc'
-  | 'created-desc'
-  | 'created-asc'
-  | 'updated-desc'
-  | 'updated-asc'
-
-type FilterOptions = {
-  high: boolean
-  medium: boolean
-  low: boolean
-  withDeadline: boolean
-  withoutDeadline: boolean
-  completed: boolean
-  pending: boolean
-}
+import { SortOption, FilterOptions } from '../../types/TaskTypes'
 
 interface TaskFilterPanelProps {
   isOpen: boolean

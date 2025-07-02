@@ -68,21 +68,23 @@ const Header: React.FC<HeaderProps> = ({
 
       <div className="actions">
         {type !== 'return' && (
-          <FilterIcon
-            onClick={() => setFilterOpen(true)}
-            className="icon"
-            title="Filtrar tarefas"
-          />
-        )}
+          <>
+            <FilterIcon
+              onClick={() => setFilterOpen(true)}
+              className="icon"
+              title="Filtrar tarefas"
+            />
 
-        <TaskFilterPanel
-          isOpen={filterOpen}
-          onClose={() => setFilterOpen(false)}
-          filterOptions={filterOptions}
-          setFilterOptions={setFilterOptions}
-          sortOption={sortOption}
-          setSortOption={setSortOption}
-        />
+            <TaskFilterPanel
+            isOpen={filterOpen}
+            onClose={() => setFilterOpen(false)}
+              filterOptions={filterOptions}
+              setFilterOptions={setFilterOptions}
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+              />
+          </>
+        )}
 
         <div className="menu-wrapper">
           <MenuIcon className="icon" onClick={toggleMenu} title="Menu" />

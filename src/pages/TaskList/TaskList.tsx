@@ -5,36 +5,7 @@ import Header from '../../components/Header/Header'
 import TaskCard from '../../components/TaskCard/TaskCard'
 import { useNavigate } from 'react-router-dom'
 import { clearToken } from '../../utils/auth'
-
-export interface Task {
-  id: string
-  title: string
-  deadline?: string
-  priority?: 'baixa' | 'media' | 'alta' | 'nenhuma'
-  status: 'pendente' | 'concluida'
-  createdAt?: string
-  updatedAt?: string
-}
-
-type SortOption =
-  | 'priority-asc'
-  | 'priority-desc'
-  | 'deadline-asc'
-  | 'deadline-desc'
-  | 'created-asc'
-  | 'created-desc'
-  | 'updated-asc'
-  | 'updated-desc'
-
-type FilterOptions = {
-  high: boolean
-  medium: boolean
-  low: boolean
-  withDeadline: boolean
-  withoutDeadline: boolean
-  completed: boolean
-  pending: boolean
-}
+import { Task, SortOption, FilterOptions } from '../../types/TaskTypes'
 
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
