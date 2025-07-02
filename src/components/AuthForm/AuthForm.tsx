@@ -93,8 +93,8 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
               </>
             )}
           </Button>
-          {error && <div className="auth-error">{error}</div>}
-          {message && <div className="auth-message">{message}</div>}
+          {error && <div className="form-error">{error}</div>}
+          {message && <div className="form-message">{message}</div>}
         </form>
 
         {(isRegister || isRecover) && (
