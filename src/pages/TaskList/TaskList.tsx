@@ -10,6 +10,7 @@ import { Task, SortOption, FilterOptions } from '../../types/TaskTypes'
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [searchTerm, setSearchTerm] = useState('')
+  const [loading, setLoading] = useState(true) // <-- Add loading state
 
   // Load sortOption and filterOptions from localStorage, or use defaults
   const getInitialSortOption = (): SortOption => {
@@ -53,6 +54,7 @@ export default function TaskList() {
 
   useEffect(() => {
     async function fetchTasks() {
+      setLoading(true) // <-- Set loading to true before fetching
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_URL}/tasks`,
@@ -65,6 +67,7 @@ export default function TaskList() {
         if (response.status === 401) {
           clearToken()
           setTasks([])
+          setLoading(false)
           navigate('/login', { replace: true })
           return
         }
@@ -76,6 +79,8 @@ export default function TaskList() {
       } catch (error) {
         setTasks([])
         console.error('Erro ao buscar tarefas:', error)
+      } finally {
+        setLoading(false) // <-- Set loading to false after fetching
       }
     }
     fetchTasks()
@@ -190,7 +195,9 @@ export default function TaskList() {
 
       <div className="task-list-container">
         <main className="task-list-grid">
-          {!sortedTasks.length ? (
+          {loading ? (
+            <span className="no-task">Carregando tarefas...</span>
+          ) : !sortedTasks.length ? (
             <span className="no-task">
               {searchTerm || Object.values(filterOptions).some(Boolean)
                 ? 'Nenhuma task encontrada'
