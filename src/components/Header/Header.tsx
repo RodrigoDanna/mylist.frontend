@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ className = 'header', type = 'list' }) 
               <Link to="/change-password" className="link">
                 Trocar Senha
               </Link>
-              <Link to="/login" className="link">
+              <Link to="/logout" className="link">
                 Sair
               </Link>
             </div>
