@@ -21,21 +21,18 @@ const ChangePasswordPage: React.FC = () => {
 
     setLoading(true)
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/change-password`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            currentPassword,
-            password,
-            repeatPassword,
-          }),
-        }
-      )
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/change-password`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          currentPassword,
+          password,
+          repeatPassword
+        })
+      })
       if (!response.ok) {
         const result = await response.json()
         setError(result.message || 'Erro ao alterar senha')

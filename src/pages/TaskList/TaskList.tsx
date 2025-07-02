@@ -10,7 +10,7 @@ import { Task, SortOption, FilterOptions } from '../../types/TaskTypes'
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [loading, setLoading] = useState(true) // <-- Add loading state
+  const [loading, setLoading] = useState(true)
 
   // Load sortOption and filterOptions from localStorage, or use defaults
   const getInitialSortOption = (): SortOption => {
@@ -27,7 +27,7 @@ export default function TaskList() {
         withDeadline: false,
         withoutDeadline: false,
         completed: false,
-        pending: false,
+        pending: false
       }
     )
   }
@@ -54,16 +54,13 @@ export default function TaskList() {
 
   useEffect(() => {
     async function fetchTasks() {
-      setLoading(true) // <-- Set loading to true before fetching
+      setLoading(true)
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/tasks`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
           }
-        )
+        })
         if (response.status === 401) {
           clearToken()
           setTasks([])
@@ -80,29 +77,24 @@ export default function TaskList() {
         setTasks([])
         console.error('Erro ao buscar tarefas:', error)
       } finally {
-        setLoading(false) // <-- Set loading to false after fetching
+        setLoading(false)
       }
     }
     fetchTasks()
   }, [navigate])
 
-  async function handleStatusChange(
-    id: string,
-    newStatus: 'pendente' | 'concluida'
-  ) {
+  async function handleStatusChange(id: string, newStatus: 'pendente' | 'concluida') {
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ status: newStatus })
       })
       setTasks((prev) =>
-        prev.map((task) =>
-          task.id === id ? { ...task, status: newStatus } : task
-        )
+        prev.map((task) => (task.id === id ? { ...task, status: newStatus } : task))
       )
     } catch (error) {
       console.error('Erro ao atualizar status da tarefa:', error)
@@ -111,16 +103,10 @@ export default function TaskList() {
 
   // Filtering logic
   const filteredTasks = tasks
-    .filter((task) =>
-      task.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    .filter((task) => task.title.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter((task) => {
       // Priority
-      if (
-        filterOptions.high ||
-        filterOptions.medium ||
-        filterOptions.low
-      ) {
+      if (filterOptions.high || filterOptions.medium || filterOptions.low) {
         if (
           (filterOptions.high && task.priority === 'alta') ||
           (filterOptions.medium && task.priority === 'media') ||
@@ -205,11 +191,7 @@ export default function TaskList() {
             </span>
           ) : (
             sortedTasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                {...task}
-                onStatusChange={handleStatusChange}
-              />
+              <TaskCard key={task.id} {...task} onStatusChange={handleStatusChange} />
             ))
           )}
         </main>

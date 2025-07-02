@@ -38,8 +38,8 @@ const EditTaskPage: React.FC = () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
         })
         if (!response.ok) throw new Error('Erro ao buscar tarefa')
         const data = await response.json()
@@ -47,7 +47,7 @@ const EditTaskPage: React.FC = () => {
         setPriority(data.priority || 'nenhuma')
         if (data.deadline) {
           setDueDate(data.deadline.slice(0, 10))
-        } 
+        }
         setCompleted(data.status === 'concluida' ? 'sim' : 'não')
       } catch (err) {
         setError('Erro ao carregar tarefa.')
@@ -67,16 +67,16 @@ const EditTaskPage: React.FC = () => {
       title,
       priority,
       deadline: dueDate || null,
-      status: completed === 'sim' ? 'concluida' : 'pendente',
+      status: completed === 'sim' ? 'concluida' : 'pendente'
     }
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify(dto),
+        body: JSON.stringify(dto)
       })
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
@@ -100,8 +100,8 @@ const EditTaskPage: React.FC = () => {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
       })
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
@@ -161,7 +161,10 @@ const EditTaskPage: React.FC = () => {
         <div className="form-buttons">
           <Button
             className="delete"
-            onClick={(e) => { e.preventDefault(); setShowDeleteModal(true) }}
+            onClick={(e) => {
+              e.preventDefault()
+              setShowDeleteModal(true)
+            }}
             disabled={loading}
           >
             Excluir

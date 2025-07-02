@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import AuthForm from '../components/AuthForm/AuthForm';
-import { isAuthenticated } from '../utils/auth';
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import AuthForm from '../components/AuthForm/AuthForm'
+import { isAuthenticated } from '../utils/auth'
 
 export function Login() {
-  const navigate = useNavigate();
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [message, setMessage] = useState<string | undefined>(undefined);
+  const navigate = useNavigate()
+  const [error, setError] = useState<string | undefined>(undefined)
+  const [message, setMessage] = useState<string | undefined>(undefined)
 
   useEffect(() => {
     if (isAuthenticated()) {
-      navigate('/list', { replace: true });
+      navigate('/list', { replace: true })
     }
-  }, [navigate]);
+  }, [navigate])
 
   async function handleLogin(data: any) {
     setError(undefined)
@@ -22,22 +22,22 @@ export function Login() {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+        body: JSON.stringify(data)
+      })
       if (!response.ok) {
-        const result = await response.json();
-        setError(result.message);
+        const result = await response.json()
+        setError(result.message)
       } else {
-        const token = await response.text();
-        localStorage.setItem('token', token);
-        setMessage('Login realizado com sucesso! Redirecionando...');
-        navigate('/list');
+        const token = await response.text()
+        localStorage.setItem('token', token)
+        setMessage('Login realizado com sucesso! Redirecionando...')
+        navigate('/list')
       }
     } catch (error) {
-      console.error('Login failed:', error);
-      setError('Usuário ou Senha inválidos');
+      console.error('Login failed:', error)
+      setError('Usuário ou Senha inválidos')
     }
   }
 
-  return <AuthForm type="login" onSubmit={handleLogin} error={error} message={message} />;
+  return <AuthForm type="login" onSubmit={handleLogin} error={error} message={message} />
 }

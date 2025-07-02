@@ -18,30 +18,45 @@ export default function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recover" element={<Recover />} />
-        <Route path="/list" element={
-          <PrivateRoute>
-            <TaskList />
-          </PrivateRoute>
-        } />
-        <Route path="/change-password" element={
-          <PrivateRoute>
-            <ChangePasswordPage />
-          </PrivateRoute>
-        } />
-        <Route path="/edit-task/:id" element={
-          <PrivateRoute>
-            <EditTask />
-          </PrivateRoute>
-        } />
-        <Route path="/add-task" element={
-          <PrivateRoute>
-            <AddTask />
-          </PrivateRoute>
-        } />
+        <Route
+          path="/list"
+          element={
+            <PrivateRoute>
+              <TaskList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/change-password"
+          element={
+            <PrivateRoute>
+              <ChangePasswordPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/edit-task/:id"
+          element={
+            <PrivateRoute>
+              <EditTask />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/add-task"
+          element={
+            <PrivateRoute>
+              <AddTask />
+            </PrivateRoute>
+          }
+        />
         {/* Default route: redirect based on authentication */}
-        <Route path="*" element={
-          isAuthenticated() ? <Navigate to="/list" replace /> : <Navigate to="/login" replace />
-        } />
+        <Route
+          path="*"
+          element={
+            isAuthenticated() ? <Navigate to="/list" replace /> : <Navigate to="/login" replace />
+          }
+        />
       </Routes>
     </BrowserRouter>
   )

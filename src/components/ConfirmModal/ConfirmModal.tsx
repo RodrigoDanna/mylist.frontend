@@ -20,7 +20,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   onCancel,
   confirmText = 'Confirmar',
   cancelText = 'Cancelar',
-  loading = false,
+  loading = false
 }) => {
   if (!open) return null
   return (

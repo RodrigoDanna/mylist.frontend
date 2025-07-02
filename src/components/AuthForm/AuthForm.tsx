@@ -7,7 +7,7 @@ import Logo from '../../assets/logo.png'
 
 interface AuthFormProps {
   type: 'login' | 'register' | 'recover'
-  onSubmit: (data: any) => Promise<void> | void // <-- Make onSubmit async-compatible
+  onSubmit: (data: any) => Promise<void> | void
   error?: string
   message?: string
 }
@@ -16,7 +16,7 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setrepeatPassword] = useState('')
-  const [loading, setLoading] = useState(false) // <-- Loader state
+  const [loading, setLoading] = useState(false)
 
   const isRegister = type === 'register'
   const isRecover = type === 'recover'
@@ -41,7 +41,6 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
       <img src={Logo} alt="MyList" className="logo" />
 
       <div className="form-wrapper">
-        
         <form className="auth-form" key={type} onSubmit={handleSubmit}>
           {isLogin && <div className="help-text">Para entrar, informe seu e-mail e senha!</div>}
           {isRecover && (
@@ -85,7 +84,9 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
             />
           )}
           <Button type="submit" disabled={loading}>
-            {loading ? 'Aguarde...' : (
+            {loading ? (
+              'Aguarde...'
+            ) : (
               <>
                 {type === 'login' && 'Entrar'}
                 {type === 'register' && 'Registrar'}
@@ -98,7 +99,12 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
         </form>
 
         {(isRegister || isRecover) && (
-          <button className="back-button" onClick={() => navigate('/login')} type="button" disabled={loading}>
+          <button
+            className="back-button"
+            onClick={() => navigate('/login')}
+            type="button"
+            disabled={loading}
+          >
             ← Voltar para login
           </button>
         )}

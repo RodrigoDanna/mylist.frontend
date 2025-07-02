@@ -18,7 +18,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
   filterOptions,
   setFilterOptions,
   sortOption,
-  setSortOption,
+  setSortOption
 }) => {
   const handleFilterChange = (key: keyof FilterOptions) => {
     setFilterOptions({ ...filterOptions, [key]: !filterOptions[key] })

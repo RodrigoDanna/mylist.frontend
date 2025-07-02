@@ -28,21 +28,18 @@ const AddTaskPage: React.FC = () => {
     setMessage(undefined)
     setLoading(true)
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/tasks`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            title,
-            priority,
-            deadline: dueDate || undefined,
-          }),
-        }
-      )
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/tasks`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          title,
+          priority,
+          deadline: dueDate || undefined
+        })
+      })
       if (!response.ok) {
         const result = await response.json()
         setError(result.message || 'Erro ao criar tarefa')

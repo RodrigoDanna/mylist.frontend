@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
   filterOptions,
   setFilterOptions,
   sortOption,
-  setSortOption,
+  setSortOption
 }) => {
   const [filterOpen, setFilterOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({
             type="text"
             placeholder="Pesquise sua tarefa"
             value={searchTerm}
-            onChange={e => onSearchTermChange?.(e.target.value)}
+            onChange={(e) => onSearchTermChange?.(e.target.value)}
           />
         </div>
       )}
@@ -76,13 +76,13 @@ const Header: React.FC<HeaderProps> = ({
             />
 
             <TaskFilterPanel
-            isOpen={filterOpen}
-            onClose={() => setFilterOpen(false)}
+              isOpen={filterOpen}
+              onClose={() => setFilterOpen(false)}
               filterOptions={filterOptions}
               setFilterOptions={setFilterOptions}
               sortOption={sortOption}
               setSortOption={setSortOption}
-              />
+            />
           </>
         )}
 
