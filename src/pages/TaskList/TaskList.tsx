@@ -10,17 +10,46 @@ import { Task, SortOption, FilterOptions } from '../../types/TaskTypes'
 export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortOption, setSortOption] = useState<SortOption>('priority-desc')
-  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
-    high: false,
-    medium: false,
-    low: false,
-    withDeadline: false,
-    withoutDeadline: false,
-    completed: false,
-    pending: false,
-  })
+
+  // Load sortOption and filterOptions from localStorage, or use defaults
+  const getInitialSortOption = (): SortOption => {
+    const stored = localStorage.getItem('sortOption')
+    return (stored as SortOption) || 'created-desc'
+  }
+  const getInitialFilterOptions = (): FilterOptions => {
+    const stored = localStorage.getItem('filterOptions')
+    return (
+      (stored && JSON.parse(stored)) || {
+        high: false,
+        medium: false,
+        low: false,
+        withDeadline: false,
+        withoutDeadline: false,
+        completed: false,
+        pending: false,
+      }
+    )
+  }
+
+  const [sortOption, setSortOptionState] = useState<SortOption>(getInitialSortOption)
+  const [filterOptions, setFilterOptionsState] = useState<FilterOptions>(getInitialFilterOptions)
   const navigate = useNavigate()
+
+  // Save sortOption and filterOptions to localStorage when they change
+  useEffect(() => {
+    localStorage.setItem('sortOption', sortOption)
+  }, [sortOption])
+
+  useEffect(() => {
+    localStorage.setItem('filterOptions', JSON.stringify(filterOptions))
+  }, [filterOptions])
+
+  const setSortOption = (opt: SortOption) => {
+    setSortOptionState(opt)
+  }
+  const setFilterOptions = (opts: FilterOptions) => {
+    setFilterOptionsState(opts)
+  }
 
   useEffect(() => {
     async function fetchTasks() {

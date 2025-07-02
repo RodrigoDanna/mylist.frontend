@@ -37,14 +37,14 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
       <section className="sort-section">
         <div className="section-title">Ordenar por</div>
         <select value={sortOption} onChange={handleSortChange}>
+          <option value="created-desc">Data de Criação ↓</option>
+          <option value="created-asc">Data de Criação ↑</option>
+          <option value="updated-desc">Data de Atualização ↓</option>
+          <option value="updated-asc">Data de Atualização ↑</option>
           <option value="priority-desc">Prioridade ↓</option>
           <option value="priority-asc">Prioridade ↑</option>
           <option value="deadline-desc">Prazo ↓</option>
           <option value="deadline-asc">Prazo ↑</option>
-          <option value="created-desc">Criada ↓</option>
-          <option value="created-asc">Criada ↑</option>
-          <option value="updated-desc">Atualizada ↓</option>
-          <option value="updated-asc">Atualizada ↑</option>
         </select>
       </section>
 
