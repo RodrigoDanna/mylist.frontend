@@ -18,8 +18,8 @@ export function Register() {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        const errorMsg = await response.text();
-        setError(errorMsg || 'Erro ao registrar usuário');
+        const errorResponse = await response.json();
+        setError(errorResponse.message || 'Erro ao registrar usuário');
       } else {
         setMessage('Usuário registrado com sucesso! Faça login para continuar.');
       }
