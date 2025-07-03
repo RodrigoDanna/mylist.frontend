@@ -22,8 +22,22 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:watch": "craco test --watch",
+    "test:watchAll": "craco test --watchAll",
+    "test:coverage": "craco test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,less,md}\""
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/types/**",
+      "!src/index.tsx",
+      "!src/reportWebVitals.ts",
+      "!src/**/*.test.{js,jsx,ts,tsx}",
+      "!src/**/*.spec.{js,jsx,ts,tsx}"
+    ]
   },
   "eslintConfig": {
     "extends": [
