@@ -6,14 +6,6 @@ import { Recover } from './Recover';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('Recover', () => {
-  // Silence expected console.error in tests
-  beforeAll(() => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
-  });
-  afterAll(() => {
-    (console.error as jest.Mock).mockRestore?.();
-  });
-
   it('renders recover form', () => {
     render(
       <MemoryRouter>
