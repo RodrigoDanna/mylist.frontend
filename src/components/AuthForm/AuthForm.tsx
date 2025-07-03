@@ -51,7 +51,7 @@ export default function AuthForm({ type, onSubmit, error, message }: AuthFormPro
         <img src={Logo} alt="MyList" className="logo" />
 
         <div className="form-wrapper">
-          <form className="auth-form" key={type} onSubmit={handleSubmit}>
+          <form className="auth-form" key={type} onSubmit={handleSubmit} data-testid="auth-form">
             {isLogin && <div className="help-text">Para entrar, informe seu e-mail e senha!</div>}
             {isRecover && (
               <div className="help-text">Informe seu e-mail e enviaremos uma nova senha!</div>

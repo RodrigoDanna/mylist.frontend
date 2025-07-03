@@ -24,7 +24,8 @@
     "test": "craco test",
     "test:watch": "craco test --watch",
     "test:watchAll": "craco test --watchAll",
-    "test:coverage": "craco test --coverage --watchAll=false",
+    "test:coverage": "craco test --coverage",
+    "test:coverageAll": "craco test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,less,md}\""
   },
