@@ -26,4 +26,14 @@ describe('auth utils', () => {
     clearToken();
     expect(getToken()).toBeNull();
   });
+  it('getToken returns null if token is not set', () => {
+    localStorage.removeItem('token');
+    expect(getToken()).toBeNull();
+  });
+
+  it('setToken overwrites existing token', () => {
+    setToken('first');
+    setToken('second');
+    expect(getToken()).toBe('second');
+  });
 });

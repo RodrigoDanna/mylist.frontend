@@ -1,5 +1,7 @@
 import '@testing-library/jest-dom'
 beforeAll(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+
   jest.spyOn(console, 'warn').mockImplementation((msg) => {
     if (
       typeof msg === 'string' &&
@@ -15,4 +17,6 @@ beforeAll(() => {
 afterAll(() => {
   // @ts-ignore
   if (console.warn.mockRestore) console.warn.mockRestore();
+
+  (console.error as jest.Mock).mockRestore?.();
 });
