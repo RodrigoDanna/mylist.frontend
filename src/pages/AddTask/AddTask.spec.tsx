@@ -29,7 +29,7 @@ describe('AddTask', () => {
       ok: true,
       json: async () => ({}),
     });
-    render(<AddTask />, { wrapper: MemoryRouter });
+    const { container } = render(<AddTask />, { wrapper: MemoryRouter });
     // Title input is the first textbox
     const titleInput = screen.getAllByRole('textbox')[0];
     expect(titleInput).toBeInTheDocument();
@@ -37,8 +37,9 @@ describe('AddTask', () => {
     // Priority select
     const prioritySelect = screen.getByRole('combobox');
     fireEvent.change(prioritySelect, { target: { value: 'alta' } });
-    // Date input by type
-    const dateInput = document.querySelector('input[type="date"]');
+    // Date input (type="date"), label is not associated, so select by type
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+    const dateInput = container.querySelector('input[type="date"]');
     expect(dateInput).toBeInTheDocument();
     fireEvent.change(dateInput!, { target: { value: '2025-07-03' } });
     fireEvent.click(screen.getByRole('button', { name: /Criar/i }));
