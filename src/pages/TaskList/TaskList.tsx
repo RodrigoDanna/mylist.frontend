@@ -170,6 +170,7 @@ export default function TaskList() {
 
   return (
     <>
+      <h1 className="hidden-title">Listagem de Tarefas</h1>
       <Header
         searchTerm={searchTerm}
         onSearchTermChange={setSearchTerm}
