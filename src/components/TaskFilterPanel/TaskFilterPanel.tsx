@@ -54,7 +54,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.high}
+              checked={filterOptions?.high ?? false}
               onChange={() => handleFilterChange('high')}
             />{' '}
             <span>Prioridade Alta</span>
@@ -62,7 +62,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.medium}
+              checked={filterOptions?.medium ?? false}
               onChange={() => handleFilterChange('medium')}
             />{' '}
             <span>Prioridade Média</span>
@@ -70,7 +70,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.low}
+              checked={filterOptions?.low ?? false}
               onChange={() => handleFilterChange('low')}
             />{' '}
             <span>Prioridade Baixa</span>
@@ -78,7 +78,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.withDeadline}
+              checked={filterOptions?.withDeadline ?? false}
               onChange={() => handleFilterChange('withDeadline')}
             />{' '}
             <span>Com Prazo</span>
@@ -86,7 +86,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.withoutDeadline}
+              checked={filterOptions?.withoutDeadline ?? false}
               onChange={() => handleFilterChange('withoutDeadline')}
             />{' '}
             <span>Sem Prazo</span>
@@ -94,7 +94,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.completed}
+              checked={filterOptions?.completed ?? false}
               onChange={() => handleFilterChange('completed')}
             />{' '}
             <span>Concluídas</span>
@@ -102,7 +102,7 @@ const TaskFilterPanel: React.FC<TaskFilterPanelProps> = ({
           <label>
             <input
               type="checkbox"
-              checked={filterOptions.pending}
+              checked={filterOptions?.pending ?? false}
               onChange={() => handleFilterChange('pending')}
             />{' '}
             <span>Pendentes</span>
