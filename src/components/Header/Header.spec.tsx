@@ -7,6 +7,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
 
 describe('Header', () => {
+  function renderWithRouter(ui: any) {
+    return render(<BrowserRouter>{ui}</BrowserRouter>);
+  }
+
   it('applies default class and not-fixed for return type when not scrolled', () => {
     const { container } = renderWithRouter(<Header type="return" />);
     // Simulate not scrolled (default)
@@ -15,10 +19,7 @@ describe('Header', () => {
     expect(header).toHaveClass('not-fixed');
     expect(header).not.toHaveClass('scrolled');
   });
-  function renderWithRouter(ui: any) {
-    return render(<BrowserRouter>{ui}</BrowserRouter>);
-  }
-
+  
   it('renders logo', () => {
     renderWithRouter(<Header />);
     expect(screen.getByAltText('MyList')).toBeInTheDocument();
