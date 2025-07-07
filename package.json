@@ -1,7 +1,10 @@
 {
   "name": "mylist.frontend",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Rodrigo R. Danna",
   "private": true,
+  "license": "UNLICENSED",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
