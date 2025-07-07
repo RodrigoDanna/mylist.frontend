@@ -108,12 +108,15 @@ const EditTaskPage: React.FC = () => {
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
         setError(data.message || 'Erro ao excluir tarefa.')
+        setShowDeleteModal(false)
+        return;
       }
       setMessage('Tarefa excluída com sucesso!')
       setShowDeleteModal(false)
       navigate('/')
     } catch (err: any) {
       setError(err.message || 'Erro ao excluir tarefa.')
+      setShowDeleteModal(false)
     } finally {
       setLoading(false)
     }
@@ -122,6 +125,9 @@ const EditTaskPage: React.FC = () => {
   return (
     <>
       <Header type="return" />
+      {/* Show error/message always at the top, outside modal and form */}
+      {error && <div className="form-error" style={{ margin: '16px auto', maxWidth: 400 }}>{error}</div>}
+      {message && <div className="form-message" style={{ margin: '16px auto', maxWidth: 400 }}>{message}</div>}
       <form className="edit-task-form" onSubmit={handleSubmit}>
         <div className="form-inputs">
           <label className="input-label">
@@ -158,8 +164,6 @@ const EditTaskPage: React.FC = () => {
             disabled={loading}
           />
         </div>
-        {error && <div className="form-error">{error}</div>}
-        {message && <div className="form-message">{message}</div>}
         <div className="form-buttons">
           <Button
             className="delete"
