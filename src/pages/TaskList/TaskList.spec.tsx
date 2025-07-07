@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { act } from 'react';
+
 import TaskList from './TaskList';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -76,8 +78,7 @@ describe('TaskList', () => {
       json: async () => ({})
     });
     renderList();
-    await flushPromises();
-    expect(mockClearToken).toHaveBeenCalled();
+    await waitFor(() => expect(mockClearToken).toHaveBeenCalled());
     expect(mockNavigate).toHaveBeenCalledWith('/login', { replace: true });
   });
 
@@ -129,8 +130,11 @@ describe('TaskList', () => {
     // Status change (checkbox)
     fetchMock.mockResolvedValueOnce({ ok: true, status: 200, json: async () => ({}) });
     const firstCheckbox = document.querySelectorAll('.task-card input[type="checkbox"]')[0] as HTMLInputElement;
-    fireEvent.click(firstCheckbox); // check
-    await flushPromises();
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    await act(async () => {
+      fireEvent.click(firstCheckbox); // check
+      await flushPromises();
+    });
     expect(firstCheckbox.checked).toBe(true);
 
     // Edit button

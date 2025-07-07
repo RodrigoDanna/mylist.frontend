@@ -75,7 +75,6 @@ export default function TaskList() {
         setTasks(data)
       } catch (error) {
         setTasks([])
-        console.error('Erro ao buscar tarefas:', error)
       } finally {
         setLoading(false)
       }
@@ -97,7 +96,7 @@ export default function TaskList() {
         prev.map((task) => (task.id === id ? { ...task, status: newStatus } : task))
       )
     } catch (error) {
-      console.error('Erro ao atualizar status da tarefa:', error)
+      
     }
   }
 
