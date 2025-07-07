@@ -27,6 +27,15 @@ describe('Input', () => {
     expect(screen.getByText('03/07/2025')).toBeInTheDocument();
   });
 
+  it('updates date overlay when date input changes', () => {
+    const handleChange = jest.fn();
+    render(<Input value="2025-07-03" onChange={handleChange} type="date" />);
+    const input = screen.getByDisplayValue('2025-07-03');
+    fireEvent.change(input, { target: { value: '2025-12-25' } });
+    expect(screen.getByText('25/12/2025')).toBeInTheDocument();
+    expect(handleChange).toHaveBeenCalled();
+  });
+
   it('calls showPicker and focuses input on date input click', () => {
     const showPicker = jest.fn();
     const focus = jest.fn();
