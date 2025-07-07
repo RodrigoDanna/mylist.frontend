@@ -38,14 +38,17 @@ export function Input({ label, className = '', type, ...props }: InputProps) {
     }
   }, [props.value, isDate])
 
+  // Generate a unique id for the input if not provided
+  const inputId = props.id || `input-${label ? label.replace(/\s+/g, '-').toLowerCase() : Math.random().toString(36).slice(2)}`
   return (
     <div className="custom-input-wrapper" style={isDate ? { cursor: 'pointer' } : undefined}>
-      {label && <label className="custom-input-label">{label}</label>}
+      {label && <label className="custom-input-label" htmlFor={inputId}>{label}</label>}
       <input
         ref={inputRef}
         className={inputClass}
         type={inputType}
         {...props}
+        id={inputId}
         value={isDate ? dateValue : props.value}
         onChange={handleChange}
         readOnly={isDate && !!props.readOnly}

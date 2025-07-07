@@ -17,7 +17,7 @@ it('shows error message on network error', async () => {
     await userEvent.type(screen.getByPlaceholderText(/E-mail/i), 'test@example.com');
     await userEvent.type(screen.getByPlaceholderText(/Senha/i), 'password');
     await userEvent.click(screen.getByRole('button', { name: /Entrar/i }));
-    expect(await screen.findByText(/Usuário ou Senha inválidos/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Ocorreu um erro/i)).toBeInTheDocument();
   });
 
 // Mock useNavigate from react-router-dom

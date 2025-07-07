@@ -35,7 +35,7 @@ export function Login() {
       }
     } catch (error) {
       console.error('Login failed:', error)
-      setError('Usuário ou Senha inválidos')
+      setError('Ocorreu um erro ao realizar o login. Por favor, tente novamente mais tarde')
     }
   }
 

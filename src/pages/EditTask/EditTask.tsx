@@ -41,7 +41,9 @@ const EditTaskPage: React.FC = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         })
-        if (!response.ok) throw new Error('Erro ao buscar tarefa')
+        if (!response.ok) {
+          setError('Erro ao buscar tarefa')
+        }
         const data = await response.json()
         setTitle(data.title || '')
         setPriority(data.priority || 'nenhuma')
@@ -80,7 +82,7 @@ const EditTaskPage: React.FC = () => {
       })
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
-        throw new Error(data.message || 'Erro ao atualizar tarefa')
+        setError(data.message || 'Erro ao atualizar tarefa.')
       }
       setMessage('Tarefa atualizada com sucesso!')
       setTimeout(() => navigate('/'), 500)
@@ -105,7 +107,7 @@ const EditTaskPage: React.FC = () => {
       })
       if (!response.ok) {
         const data = await response.json().catch(() => ({}))
-        throw new Error(data.message || 'Erro ao excluir tarefa')
+        setError(data.message || 'Erro ao excluir tarefa.')
       }
       setMessage('Tarefa excluída com sucesso!')
       setShowDeleteModal(false)
