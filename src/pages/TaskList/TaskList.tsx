@@ -96,7 +96,7 @@ export default function TaskList() {
         prev.map((task) => (task.id === id ? { ...task, status: newStatus } : task))
       )
     } catch (error) {
-      
+      console.error('Erro ao atualizar status da tarefa:', error)
     }
   }
 
